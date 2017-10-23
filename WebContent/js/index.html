@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+	<script
+  src="https://code.jquery.com/jquery-3.2.1.min.js"
+  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+  crossorigin="anonymous"></script>
+  
+<link href=“https://fonts.googleapis.com/css?family=Bungee+Hairline|Bungee+Inline” rel=“stylesheet”>
+  <link href="js/styling.css" rel="stylesheet">
+
+  
+</head>
+<body>
+<h1>Personal Steps Counter</h1>
+
+<img src="https://aos.iacpublishinglabs.com/question/aq/1400px-788px/can-person-run-6-minute-mile_8542308e91406401.jpg?domain=cx.aos.ask.com">
+
+<div id="stepForm">
+<!-- need a form, one that has a box to take in the date, the other to take in the number of steps -->
+<!-- then we could return them an estimated number of calories they burned for the day -->
+<!-- and if extra ambitious, the number of calories burned for the month or something -->
+<!-- or running total -->
+	<form name="inputSteps">
+		<h3>Enter Today's Number of Steps:</h3>
+		<input name="stepsForDay" type="text"/><br>
+		<input name="submitButton"  type="button" value="Submit">
+	</form>
+	<br>
+</div>
+
+
+<!-- where the content/table will go -->
+<div id="content">
+</div>
+
+
+<div>
+	<button id="showHistory">View Steps History</button>
+</div>
+
+<div id="progressReport">
+	<!-- keep this blank, dynamically append to it depending on if people click a button -->
+</div>
+
+
+	<script src="js/app.js"></script>
+</body>
+</html>
