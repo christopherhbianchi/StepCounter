@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html ng-app="stepsCounterAppModule">
+
+<head>
+
+<!-- source in our dependencies... angular, modules, etc. -->
+<!-- Angular and 3rd party -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.7/angular.min.js">
+	</script> <!-- angular -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.7/angular-route.min.js">
+	</script> <!-- ngRoute -->
+<!-- Modules -->
+<script src="app/appModule/app.module.js"></script>
+<!-- Services -->
+<script src="app/appModule/stepscounter.service.js"></script>
+<!-- Filters -->
+<!-- Components -->
+<script src="app/appModule/stepscounter.component.js"></script>
+<script src="app/appModule/notfound.component.js"></script>
+
+</head>
+
+<body>
+
+
+
+
+
+<!-- ng-view will go in here and stick our elements in for us -->
+<ng-view></ng-view>
+
+
+</body>
+
+</html>

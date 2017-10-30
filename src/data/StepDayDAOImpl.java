@@ -40,12 +40,16 @@ public class StepDayDAOImpl implements StepDayDAO {
 		ObjectMapper mapper = new ObjectMapper();
 		try {
 			StepDay sd = mapper.readValue(stepDayJSON, StepDay.class);
-			
+			System.out.println(stepDayJSON);
+
 			//if there's a duplicate date, delete the old one
 			List<StepDay> stepDayList = getAll();
 			for(StepDay s : stepDayList) {
+				
 				if(s.getDateStepped().equals(sd.getDateStepped())) {
-					deleteStepDay(s.getId()); //if theres a duplicate date, delete the old date
+					s.setSteps(s.getSteps() + sd.getSteps());
+					return null; //and then just return null
+//					deleteStepDay(s.getId()); //if theres a duplicate date, delete the old date
 				}
 			}
 			em.persist(sd); //persisting it to the database places it, and now auto generates an id for it

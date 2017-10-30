@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Steps Counter</title>
+
+
+</head>
+<body>
+<h1>Personal Steps Counter</h1>
+
+<!-- banner image... we aren't hiding or showing based on anything yet -->
+<img src="https://aos.iacpublishinglabs.com/question/aq/1400px-788px/can-person-run-6-minute-mile_8542308e91406401.jpg?domain=cx.aos.ask.com">
+
+<!-- Add step Day form -->
+<div id="addStepForm" ng-hide="vm.selected">
+<!-- need a form, one that has a box to take in the date, the other to take in the number of steps -->
+<!-- then we could return them an estimated number of calories they burned for the day -->
+<!-- and if extra ambitious, the number of calories burned for the month or something -->
+<!-- or running total -->
+	<form name="inputSteps">
+		<h3>Enter Today's Number of Steps:</h3> <!-- a problem that i dont have an id?.. dont think so -->
+		<input name="stepsForDay" type="text" ng-model="stepDay.steps"/><br>
+		<input type="button" value="Submit" ng-click="vm.addStepDay(stepDay); stepDay = {} ">
+	</form>
+	<br>
+</div>
+
+<!-- Edit stepDay form -->
+<div id="editStepForm" ng-show="vm.editStepDay"> <!-- show this if we have a stepDay to edit -->
+	<form name="editInputSteps">
+		<input type="text" ng-model="stepDay.steps">
+		<input type="button" value="Save" ng-click="vm.updateStepDay(stepDay)">
+		<input type="button" value="Cancel" ng-click="vm.cancelEditStepDay()"> <!-- will set editStepDay to null and hide this form -->
+	
+	
+	</form>
+
+</div>
+
+<!-- Return to the log form button... so you click, vm.selected is null. That hides this, and shows the table -->
+<div ng-show="vm.selected"> <!-- we want this button to show only if vm.selected is not null... only want to show on the single step day screen -->
+	<!-- and if its clicked... we want the table to show. So we need a value to be set to flip the table on again. -->
+	<!-- table is controlled by the vm.selected property... -->
+	<button id="showHistory" ng-click="vm.displayStepDayLog()">View Steps History</button> <!-- at this point vm.selected will become null from component operations, table will show -->
+</div>
+
+
+<!-- Steps log/table will go -->
+<!-- building out same as we did in jsJQuery app.js... but we build it in the html. Not dynamically with jQuery -->
+<!-- so we don't have special var names and stuff to append to know exactly which th we're adding... -->
+<!-- we just have to know and type the text in the old fashioned way -->
+<!-- naming divs and elements isn't as important now that we aren't targeting dynamically with jQuery only (using angular now) -->
+<div id="stepDayLog"  ng-hide="vm.selected"> <!-- if selected holds a value (truthy) then hide this element -->
+	<h3>Steps Log: </h3>
+	<table> 
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>Date</th>
+				<th>Steps</th>
+				<!-- Edit and Delete buttons can be slapped on the right side of the table -->
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="stepDayLocal in vm.stepDayList"> <!-- we will ng-repeat this so that a row will be created for each stepDay object -->
+				<td>{{stepDayLocal.id}}</td>
+				<td>{{stepDayLocal.dateStepped}}</td> 
+				<td>{{stepDayLocal.steps}}</td>
+				<td><button ng-click="vm.showStepDay(stepDayLocal); vm.setEditStepDay(); stepDay = {}">Edit</button></td> <!-- the stepDay that's been typed into the form gets cleared -->
+				<td><button ng-click="vm.destroyStepDay(stepDayLocal)">Delete</button></td>
+			</tr>
+		</tbody>
+	</table>	
+</div>
+
+<!-- div that shows running total of steps -->
+<div id="progressReport" ng-hide="vm.selected"><!-- if vm.selected holds a value then hide.. so this will show on the home page basically -->
+	<h3>Total Steps to Date: {{vm.totalSteps}}</h3><!-- comp has function that counts this, saves as a global vm property, and then we can reference here --> 
+</div>
+
+
+</body>
+</html>
